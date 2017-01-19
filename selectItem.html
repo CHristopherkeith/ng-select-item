@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Item</title>
+  <script type="text/javascript" src="js/angular.js"></script>
+  <style type="text/css">
+      .selected{
+        background-color: lightgreen;
+      }
+  </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+ <div ng-repeat="item in items" ng-class='{selected:$index==selectedRow}' ng-click='selectedWhich($index)'>
+    <span>{{item.product_name}}</span>
+    <span>{{item.price | currency}}</span>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+      $scope.items = [
+        { product_name: "Product 1", price: 50 },
+        { product_name: "Product 2", price: 20 },
+        { product_name: "Product 3", price: 180 }
+      ];
+      $scope.selectedWhich = function (row) {
+        $scope.selectedRow = row;
+      }
+    })
+    
+</script>
+</body>
+</html>
